@@ -58,6 +58,7 @@
     <script>
         $(document).ready(function (){
 
+            var timeoutID = window.setTimeout(function(){location.reload();}, 10000);
             var box1 = document.querySelector('#box1');
             var box2 = document.querySelector('#box2');
             var box3 = document.querySelector('#box3');
@@ -78,7 +79,6 @@
                 box3.addEventListener ("click", function ()
                 {
                     strip2.setAttribute("material", "side:double; color:#00AEEF");
-                    $(document).reload().delay(4000);
                     });
                 });
             });
