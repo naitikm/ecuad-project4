@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Aframe Tutorial</title>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="/js/aframe-stereo-component.js"></script>
+    <script src="/js/aframe-set-image-component.js"></script>
+    <script src="/js/aframe-event-set-component.js"></script>
+    <!-- <style>
+      * {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+  </style> -->
+  </head>
+  <body>
+    <a-scene>
+
+        <!-- BASIC SCENE DEMO -->
+        <!--<a-entity>
+            <a-sky color="pink"></a-sky>
+            <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+            <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+            <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        </a-entity>-->
+
+        <!-- SCENE WITH MODELS DEMO -->
+
+         <!--<a-assets>
+            <a-asset-item id="foliage-model" src="models/trees-and-plants/model.dae">
+            <a-asset-item id="woman-model" src="models/woman.dae">
+        </a-assets>
+        <a-entity>
+            <a-sky color="pink"></a-sky>
+            <a-entity collada-model="#woman-model"
+                id="woman">
+                <a-animation
+                    attribute="position"
+                    dur="5000"
+                    direction="alternate"
+                    fill="forwards"
+                    to="-10 0 -10"
+                    repeat="indefinite"></a-animation>
+            </a-entity>
+            <a-entity collada-model="#foliage-model"
+                id="foliage">
+            </a-entity>
+        </a-entity> -->
+
+        <!--  -->
+
+        <!-- MODEL DEMO -->    
+        <!--<a-assets>-->
+            <!--<a-asset-item id="plaza-obj" src="models/plaza.obj"></a-asset-item>
+            <a-asset-item id="plaza-mtl" src="models/plaza.mtl"></a-asset-item>
+            <a-asset-item id="plaza-plain-dae" src="models/plaza-plain.dae"></a-asset-item>
+            <a-asset-item id="plaza-dae" src="models/plaza.dae"></a-asset-item>
+        </a-assets>
+        <a-entity id="plaza-model-demo">
+            <a-sky color="pink"></a-sky>
+            <a-entity obj-model="obj: #plaza-obj; mtl: #plaza-mtl"></a-entity>
+            <a-entity collada-model="#plaza-plain-dae"></a-entity>
+        </a-entity> -->-->
+
+        <!-- STEREO DEMO -->
+         <a-camera stereocam="eye:left;">
+            <a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -8"
+                scale="0.4 0.4 0.4"
+                geometry="primitive: ring"
+                material="color: magenta; shader: flat; opacity: 0.5">
+            </a-entity>
+        </a-camera>
+        <a-assets>
+            <img id="panorama-left-eye-img" src="renders/plaza_L.jpg">
+            <img id="panorama-right-eye-img" src="renders/plaza_R.jpg">
+            <img id="panorama-2-left-eye-img" src="renders/plaza2_L.jpg">
+            <img id="panorama-2-right-eye-img" src="renders/plaza2_R.jpg">
+        </a-assets>
+        <a-entity id="plaza-stereo-demo">
+            <a-entity>
+                <a-circle
+                    id="image-button"
+                    position="0 0 -10"
+                    event-set__1="_event: mouseenter; material.color: pink"
+                    event-set__2="_event: mouseleave; material.color: white">
+                </a-circle>
+            </a-entity>
+            <a-sky id="panorama-left-eye" src="#panorama-left-eye-img" stereo="eye:left"></a-sky>
+            <a-sky id="panorama-right-eye" src="#panorama-right-eye-img" stereo="eye:right"></a-sky>
+            <a-box color="#B76705" depth="2" height="2" width="4" position="0 0 -1.25"></a-box>
+            </a-entity>
+        </a-entity>
+        <script>
+            var imageButton = document.querySelector('#image-button');
+            var leftEyePano = document.querySelector('#panorama-left-eye');
+            var rightEyePano = document.querySelector('#panorama-right-eye');
+            var toggle = true;
+            imageButton.addEventListener('click', function () {
+                if (toggle) {
+                    toggle=false;
+                    leftEyePano.setAttribute('material', 'src', '#panorama-2-left-eye-img');
+                    rightEyePano.setAttribute('material', 'src', '#panorama-2-right-eye-img');
+                } else {
+                    toggle=true;
+                    leftEyePano.setAttribute('material', 'src', '#panorama-left-eye-img');
+                    rightEyePano.setAttribute('material', 'src', '#panorama-right-eye-img');
+                }
+            });
+        </script>
+
+    </a-scene> 
+  </body>
+</html>

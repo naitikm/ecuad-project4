@@ -1,0 +1,11 @@
+{
+  "name": "intd300-aframe-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for INTD300's Q4 2016 BC Hydro plaza project, aimed at quickly prototyping installation ideas in VR.",
+  "main": "",
+  "scripts": {
+     "start": "browser-sync start --server --files 'index.html' 'css/*.css' 'js/*.js' 'models/*.obj' 'textures/*.*' 'images/*.*'"
+  },
+  "author": "Ryan Betts <ryanbetts@gmail.com>",
+  "license": "ISC"
+}

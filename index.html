@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>VR Prototype</title>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="/js/aframe-stereo-component.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>
+            <img src="img/texture.png" id="defaultTexture">
+        </a-assets>
+
+        <a-sky src="img/street.jpg"></a-sky>
+        <!--<a-sky color="#d2d2d2"></a-sky>-->
+
+         <a-box id="box1" depth=".8" height=".8" width=".8" color="#d2d2d2" src="#defaultTexture"
+                position="-2 0.4 -4">
+
+                <a-animation attribute="material.color" direction="alternate-reverse" repeat="indefinite" from="#d2d2d2" to="#00AEEF" end="click"></a-animation>
+                <a-animation attribute="material.color" begin="click" from="#d2d2d2" to="#00AEEF"></a-animation>
+         </a-box>
+         
+
+         <a-box id="box2" depth=".8" height=".8" width=".8" color="#d2d2d2" src="#defaultTexture"
+                position="2 0.4 -3">
+                
+                <a-animation attribute="material.color" direction="alternate-reverse" repeat="indefinite" from="#d2d2d2" to="#00AEEF" end="click"></a-animation>
+                <a-animation attribute="material.color" begin="click" from="#d2d2d2" to="#00AEEF"></a-animation>
+         </a-box>
+
+         <a-box id="box3" depth=".8" height=".8" width=".8" color="#d2d2d2" src="#defaultTexture"
+                position="1 0.4 -6">
+            
+            <a-animation attribute="material.color" direction="alternate-reverse" repeat="indefinite" from="#d2d2d2" to="#00AEEF" end="click"></a-animation>
+            <a-animation attribute="material.color" begin="click" from="#d2d2d2" to="#00AEEF"></a-animation>
+         </a-box>
+
+         <a-entity id="strip1" geometry="primitive:plane; height:0.1; width:3; " material="side:double; color:#3F3F3F;"
+                rotation="270 35 0"
+                position="-0.5 0 -5">></a-entity>
+
+         <a-entity id="strip2" geometry="primitive:plane; height:0.1; width:3; " material="side:double; color:#3F3F3F;"
+                rotation="270 105 0"
+                position="1.5 0 -4.5">></a-entity>
+         
+         <a-entity id="strip3" geometry="primitive:plane; height:0.1; width:4; " material="side:double; color:#3F3F3F;"
+                rotation="270 -15 0"
+                position="0 0 -3.5">></a-entity>
+
+         <a-camera position="0 7 5">
+             <a-cursor color="red"/>            
+                
+    </a-scene>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (){
+
+            var box1 = document.querySelector('#box1');
+            var box2 = document.querySelector('#box2');
+            var box3 = document.querySelector('#box3');
+            var strip1 = document.querySelector('#strip1');
+            var strip2 = document.querySelector('#strip2');
+            var strip3 = document.querySelector('#strip3');
+
+                box1.addEventListener ("click", function ()
+                {
+                    strip1.setAttribute("material", "side:double; color:#00AEEF");
+                });
+
+                box2.addEventListener ("click", function ()
+                {
+                    strip3.setAttribute("material", "side:double; color:#00AEEF");
+                });
+
+                box3.addEventListener ("click", function ()
+                {
+                    strip2.setAttribute("material", "side:double; color:#00AEEF");
+                });
+            });
+        
+
+    </script>
+  </body>
+</html>
